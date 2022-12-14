@@ -12,10 +12,7 @@ namespace Pen
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-		{
-			PEN_LOG("Failed to initialize GLAD");
-		}
+
 	}
 
 	void GLFWimplementation::Create(int width, int height, const std::string& windowName)
@@ -23,6 +20,11 @@ namespace Pen
 		mWindow = glfwCreateWindow(width, height, windowName.c_str(), NULL, NULL);
 		
 		glfwMakeContextCurrent(mWindow);
+
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		{
+			PEN_LOG("Failed to initialize GLAD");
+		}
 
 	}
 

@@ -12,7 +12,6 @@ namespace Pen
 
 	void PenApp::Run()
 	{
-
 		PEN_LOG("Pen Running...");
 
 		PenWindow::Init();
@@ -27,3 +26,4 @@ namespace Pen
 
 	}
 }
+

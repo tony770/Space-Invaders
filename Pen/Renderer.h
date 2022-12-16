@@ -13,7 +13,12 @@ namespace Pen
 
 		static void Init();
 
-		static void Draw(Picture& picture, int x, int y, int z, Shader& shader = mDefaultShader);
+		static Renderer* GetRenderer();
+
+		static void Draw(Picture& picture, int x, int y, int z);
+		static void Draw(Picture& picture, int x, int y, int z, Shader& shader);
+
+		static void Clear();
 
 	private:
 		inline static Renderer* mInstance{ nullptr };
@@ -22,7 +27,7 @@ namespace Pen
 
 		Renderer();
 
-		inline static Shader mDefaultShader{ "Assets/Shaders/defaultPenVertex.glsl",
+		Shader mDefaultShader{ "Assets/Shaders/defaultPenVertex.glsl",
 			"Assets/Shaders/defaultPenFragment.glsl" };
 
 	};

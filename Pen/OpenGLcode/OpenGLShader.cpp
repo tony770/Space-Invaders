@@ -57,7 +57,7 @@ namespace Pen
 			PEN_LOG("ERROR: Failed to open fragment shader file");
 		}
 
-
+		mShaderProg = glCreateProgram();
 		glAttachShader(mShaderProg, vertexShader);
 		glAttachShader(mShaderProg, fragmentShader);
 		glLinkProgram(mShaderProg);
@@ -170,7 +170,7 @@ namespace Pen
 
 	}
 
-	void OpenGLShader::ProvideFloatValues(std::string&& valueName, const std::vector<float>& vals)
+	void OpenGLShader::ProvideFloatValues(std::string&& valueName, std::vector<float>&& vals)
 	{
 		GLint location{ glGetUniformLocation(mShaderProg, valueName.c_str()) };
 
@@ -193,5 +193,10 @@ namespace Pen
 		default:
 			PEN_LOG("ERROR: Shader values must be vectors of size 1-4 !");
 		}
+	}
+
+	OpenGLShader::~OpenGLShader()
+	{
+		glDeleteProgram(mShaderProg);
 	}
 }

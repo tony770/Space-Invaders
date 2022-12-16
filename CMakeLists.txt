@@ -18,5 +18,11 @@ add_definitions(-DPEN_DEBUG)
 add_subdirectory(Engine22)
 add_subdirectory(Pen)
 add_subdirectory(glfw)
+add_subdirectory(glad)
+add_subdirectory(stbi)
 
 set(VS_STARTUP_PROJECT Engine22)
+
+file(COPY Fall22/Assets DESTINATION ${PROJECT_BINARY_DIR}/Fall22)
+file(COPY Fall22/Assets DESTINATION ${PROJECT_BINARY_DIR}/Debug)
+file(COPY Fall22/Assets DESTINATION ${PROJECT_BINARY_DIR}/Release)

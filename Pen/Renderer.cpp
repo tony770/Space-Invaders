@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Renderer.h"
+#include "OpenGLcode/OpenGLRenderer.h"
 
 namespace Pen
 {
@@ -20,9 +21,26 @@ namespace Pen
 		}
 	}
 
+	Renderer* Renderer::GetRenderer()
+	{
+		return mInstance;
+	}
+
+	void Renderer::Draw(Picture& picture, int x, int y, int z)
+	{
+
+		GetRenderer()->mImplementation->Draw(picture, x, y, z, 
+			GetRenderer()->mDefaultShader);
+	}
+
 	void Renderer::Draw(Picture& picture, int x, int y, int z, Shader& shader)
 	{
-		mImplementation->Draw(picture, x, y, z, shader);
+		GetRenderer()->mImplementation->Draw(picture, x, y, z, shader);
+	}
+
+	void Renderer::Clear()
+	{
+		GetRenderer()->mImplementation->Clear();
 	}
 
 }

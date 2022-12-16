@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "PenUtil.h"
+#include "PictureImplementation.h"
 
 namespace Pen
 {

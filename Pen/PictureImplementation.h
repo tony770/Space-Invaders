@@ -15,5 +15,6 @@ namespace Pen
 
 		virtual void Activate() = 0;
 
+		virtual ~PictureImplementation() {};
 	};
 }

@@ -32,20 +32,11 @@ namespace Pen
 
 		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 
-		int x{ 200 }, y{ 200 };
-		PenWindow::GetWindow()->SetKeyPressedCallback([&](const KeyPressedEvent& event) {
-			if (event.GetKeyCode() == PEN_KEY_LEFT) x -= 10;
-			else if (event.GetKeyCode() == PEN_KEY_RIGHT) x += 10;
-			});
-		Picture pic{ "Assets/Textures/test.png" };
-
 		while (true)
 		{
 			Renderer::Clear();
 
 			OnUpdate();
-
-			Pen::Renderer::Draw(pic, x, y, 1);
 
 			std::this_thread::sleep_until(mNextFrameTime);
 

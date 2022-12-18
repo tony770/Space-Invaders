@@ -14,6 +14,7 @@ set(SOURCE_FILES
 
 set(HEADER_FILES
 	Event.h
+	Keys.h
 	OpenGLcode/OpenGLPicture.h
 	OpenGLcode/OpenGLShader.h
 	OpenGLcode/OpenGLRenderer.h

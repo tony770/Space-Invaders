@@ -27,6 +27,8 @@ public:
 			return;
 		}
 
+		//value can be changed to determine how fast enemies spawn
+		//higher means slower spawn rate
 		if (frames % 10 == 0)
 		{
 			Pen::Unit enemy{ "Assets/Textures/enemy.png" };
@@ -56,33 +58,39 @@ public:
 		}
 		Player.Draw();
 		
+		//Enemy loop
 		for (auto& Unit : Enemies)
 		{
-			if (shoot == true)
+			if (shoot == true) //allows for laser movement
 			{
 				laser.ChangeY(enemySpeed);
 				laser.Draw();
 			}
 			
+			//game over if player touches enemy
 			if (Player.OverlapWith(Unit))
 			{
 				GameOver = true;
 			}
+
 			Unit.ChangeY(-enemySpeed);
 			Unit.Draw();
 
-			if (Unit.GetY() < 0 - Unit.GetHeight())
+			if (Unit.GetY() < 0 - Unit.GetHeight()) //if enemy goes off screen, delete from vector
 			{
 				Enemies.erase(Enemies.begin());
 			}
 			
+			//if laser goes off screen, redraw laser
 			if (laser.GetY() > Pen::PenWindow::GetWindow()->GetHeight() - laser.GetHeight())
 			{
 				laser.Delete();
 				laser.SetCoord(Player.GetX() + (Player.GetWidth() / 2), Player.GetY() + Player.GetHeight(), 1);
 			}
+			//deletes both enemy and laser if they collide
 			if (laser.OverlapWith(Unit))
 			{
+				//for loop used to delete specific enemy that collided with laser, hence the use of Unit ID
 				for (int i = 0; i < Enemies.size(); i++)
 				{
 					if (Enemies[i].GetID() == Unit.GetID())
@@ -90,12 +98,10 @@ public:
 						Enemies.erase(Enemies.begin() + i);
 					}
 				}
+				//redraw laser
 				laser.Delete();
 				laser.SetCoord(Player.GetX() + (Player.GetWidth() / 2), Player.GetY() + Player.GetHeight(), 1);
-				
 			}
-		
-
 		}
 	}
 private:

@@ -3,11 +3,11 @@
 
 namespace Pen
 {
-	Unit::Unit(const std::string& picFile, int hp) : mPicture(picFile), mHP(hp)
+	Unit::Unit(const std::string& picFile) : mPicture(picFile)
 	{
 	}
 
-	Unit::Unit(std::string&& picFile, int hp) : mPicture(picFile), mHP(hp)
+	Unit::Unit(std::string&& picFile) : mPicture(picFile)
 	{
 	}
 
@@ -50,15 +50,28 @@ namespace Pen
 	{
 		return mZcoord;
 	}
-	int Unit::ChangeHP(int hpDiff)
+
+	int Unit::GetWidth() const
 	{
-		mHP += hpDiff;
-		return mHP;
+		return mPicture.GetWidth();
 	}
-	int Unit::GetHP() const
+
+	int Unit::GetHeight() const
 	{
-		return mHP;
+		return mPicture.GetHeight();
 	}
+
+
+	void Unit::Draw()
+	{
+		Renderer::Draw(mPicture, mXcoord, mYcoord, mZcoord);
+	}
+
+	void Unit::Delete()
+	{
+		Renderer::Clear();
+	}
+
 	bool Unit::OverlapWith(const Unit& other) const
 	{
 		int oneLeft{ GetX() };
@@ -81,6 +94,14 @@ namespace Pen
 			(anotherBottom <= oneBottom && oneBottom <= anotherTop))
 			collideY = true;
 
-		return collideY && collideY;
+		return collideX && collideY;
+	}
+	void Unit::SetID(int ID)
+	{
+		mID = ID;
+	}
+	int Unit::GetID() const
+	{
+		return mID;
 	}
 }

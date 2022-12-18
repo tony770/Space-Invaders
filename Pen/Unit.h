@@ -2,14 +2,15 @@
 
 #include "PenUtil.h"
 #include "Picture.h"
+#include "Renderer.h"
 
 namespace Pen
 {
 	class PEN_API Unit
 	{
 	public:
-		Unit(const std::string& picFile, int hp);
-		Unit(std::string&& picFile, int hp);
+		Unit(const std::string& picFile);
+		Unit(std::string&& picFile);
 
 		void SetCoord(int x, int y, int z);
 
@@ -20,18 +21,22 @@ namespace Pen
 		int GetX() const;
 		int GetY() const;
 		int GetZ() const;
+		int GetWidth() const;
+		int GetHeight() const;
 
-		int ChangeHP(int hpDiff);
-		int GetHP() const;
-
+		void Draw();
+		void Delete();
 		bool OverlapWith(const Unit& other) const;
+
+		void SetID(int ID);
+		int GetID() const;
 
 	private:
 		Picture mPicture;
 		int mXcoord{ 0 };
 		int mYcoord{ 0 };
 		int mZcoord{ 0 };
-		int mHP{ 0 };
+		int mID;
 
 		friend class Renderer;
 	};

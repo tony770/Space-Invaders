@@ -16,7 +16,7 @@ namespace Pen
 	PenApp::PenApp()
 	{
 		PenWindow::Init();
-		PenWindow::GetWindow()->Create(1000, 800, "Test Window");
+		PenWindow::GetWindow()->Create(1200, 1000, "Game Window");
 
 		Renderer::Init();
 	}

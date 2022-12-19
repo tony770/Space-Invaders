@@ -11,7 +11,7 @@ public:
 		Pen::PenWindow::GetWindow()->SetKeyReleasedCallback(
 			[this](const Pen::KeyReleasedEvent& event) {OnKeyRelease(event); });
 
-		Player.SetCoord(400, 0, 1);
+		Player.SetCoord((Pen::PenWindow::GetWindow()->GetWidth() - Player.GetWidth()) / 2, 0, 1);
 		laser.SetCoord(Player.GetX() + (Player.GetWidth() / 2), Player.GetY() + Player.GetHeight(), 1);
 		GOimage.SetCoord((Pen::PenWindow::GetWindow()->GetWidth() - GOimage.GetWidth()) / 2, 
 			(Pen::PenWindow::GetWindow()->GetHeight() - GOimage.GetHeight()) / 2, 1);

@@ -1,0 +1,6 @@
+My game took inspiration from the space invader game.
+A player spaceship will spawn in the bottom-middle of the screen.
+Enemies will spawn at the top of the screen at random X coordinates.
+The player will be able to shoot lasers at enemies.
+Enemies will disappear if they collide with the lasers.
+If the player touches any enemy ship then the game will end.
